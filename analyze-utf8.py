@@ -212,7 +212,7 @@ class AnalyzeDbUtf8(object):
     def get_tables(self):
         cur = self.mysql_con.cursor()
         sql = ("SELECT DISTINCT table_name tbl FROM information_schema.tables "
-               "WHERE table_schema = '%s'")
+               "WHERE table_schema = '%s' AND table_type <> 'VIEW'")
         cur.execute(sql % (self.db))
         rows = cur.fetchall()
         tbls = []
